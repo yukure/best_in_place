@@ -277,6 +277,42 @@ describe BestInPlace::Helper, type: :helper do
       end
     end
 
+    context "with a new record" do
+      before do
+        @new_user = User.new last_name: "Hortenz"
+      end
+
+      describe "url generation" do
+        it "should have the correct default url" do
+          nk = Nokogiri::HTML.parse(helper.best_in_place @new_user, :last_name)
+          span = nk.css("span")
+          expect(span.attribute("data-bip-url").value).to eq("/users")
+        end
+
+        it "should set the new-object data param" do
+          nk = Nokogiri::HTML.parse(helper.best_in_place @new_user, :last_name)
+          span = nk.css("span")
+          expect(span.attribute("data-bip-new-object").value).to be_truthy
+        end
+
+        # normally this would be used to set associations for new models , eg.
+        # `role_id` or `categories`, that would then be passed to the
+        # users#create method. Since the test model doesn't have associations,
+        # we'll just test that last_name works this way.
+        it "should set the extra-payload data param to a hash of all the unsaved attribs of the model" do
+          nk = Nokogiri::HTML.parse(helper.best_in_place @new_user, :last_name)
+          span = nk.css("span")
+          expect(span.attribute("data-bip-extra-payload").value).to eq '{"last_name":"Hortenz"}'
+        end
+
+        it "should have a proper id" do
+          nk = Nokogiri::HTML.parse(helper.best_in_place @new_user, :last_name)
+          span = nk.css("span")
+          expect(span.attribute("id").value).to eq("best_in_place_user_last_name")
+        end
+      end
+    end
+
     context "with a text field attribute" do
       before do
         nk = Nokogiri::HTML.parse(helper.best_in_place @user, :name)
