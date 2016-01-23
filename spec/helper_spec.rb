@@ -277,38 +277,35 @@ describe BestInPlace::Helper, type: :helper do
       end
     end
 
-    context "with a new record" do
+    context "with a new record and associations" do
       before do
-        @new_user = User.new last_name: "Hortenz"
+        @user.save
+        @test_result = TestResult.new name: 'Meyers-Briggs', user_id: @user.id
       end
 
       describe "url generation" do
         it "should have the correct default url" do
-          nk = Nokogiri::HTML.parse(helper.best_in_place @new_user, :last_name)
+          nk = Nokogiri::HTML.parse(helper.best_in_place [:admin, @test_result], :result)
           span = nk.css("span")
-          expect(span.attribute("data-bip-url").value).to eq("/users")
+          expect(span.attribute("data-bip-url").value).to eq("/admin/test_results")
         end
 
         it "should set the new-object data param" do
-          nk = Nokogiri::HTML.parse(helper.best_in_place @new_user, :last_name)
+          nk = Nokogiri::HTML.parse(helper.best_in_place [:admin, @test_result], :result)
           span = nk.css("span")
           expect(span.attribute("data-bip-new-object").value).to be_truthy
         end
 
-        # normally this would be used to set associations for new models , eg.
-        # `role_id` or `categories`, that would then be passed to the
-        # users#create method. Since the test model doesn't have associations,
-        # we'll just test that last_name works this way.
         it "should set the extra-payload data param to a hash of all the unsaved attribs of the model" do
-          nk = Nokogiri::HTML.parse(helper.best_in_place @new_user, :last_name)
+          nk = Nokogiri::HTML.parse(helper.best_in_place [:admin, @test_result], :result)
           span = nk.css("span")
-          expect(span.attribute("data-bip-extra-payload").value).to eq '{"last_name":"Hortenz"}'
+          expect(span.attribute("data-bip-extra-payload").value).to eq %Q!{"name":"Meyers-Briggs","user_id":#{@user.id}}!
         end
 
-        it "should have a proper id" do
-          nk = Nokogiri::HTML.parse(helper.best_in_place @new_user, :last_name)
+        it "should have a proper DOM id for the container" do
+          nk = Nokogiri::HTML.parse(helper.best_in_place [:admin, @test_result], :result)
           span = nk.css("span")
-          expect(span.attribute("id").value).to eq("best_in_place_user_last_name")
+          expect(span.attribute("id").value).to eq("best_in_place_test_result_result")
         end
       end
     end
