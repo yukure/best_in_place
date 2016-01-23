@@ -3,7 +3,7 @@ class Admin::TestResultsController < ApplicationController
   def create
     test_result = TestResult.new test_result_params
     test_result.save!
-    render json: { test_result: test_result }
+    render json: test_result, root: true
   end
 
   def update

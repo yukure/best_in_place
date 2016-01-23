@@ -37,7 +37,7 @@ class User < ActiveRecord::Base
 
   def tests
     TestResult::AVAILABLE_TESTS.map do |test_type|
-      test_results.find_by(name: test_type) || TestResult.new(name: test_type, user_id: id)
+      test_results.where(name: test_type).first || TestResult.new(name: test_type, user_id: id)
     end
   end
 end
