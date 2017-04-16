@@ -166,7 +166,7 @@ The value will always be converted to a string for display.
 If you use array as a collection, the first value is always the negative boolean value and the second the positive. Structure: `["false value", "true value"]`.
 If not defined, it will default to *Yes* and *No* options.
 Default true and false values are stored in locales
- 
+
     t(:'best_in_place.yes', default: 'Yes')
     t(:'best_in_place.no', default: 'No')
 
@@ -340,7 +340,7 @@ You can configure some global options for best_in_place. Currently these options
       config.container = :div
       config.skip_blur = true
     end
-    
+
 
 ## Notification
 
