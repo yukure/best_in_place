@@ -12,12 +12,13 @@ gemfile:
   - gemfiles/rails_4.0.gemfile
   - gemfiles/rails_4.1.gemfile
   - gemfiles/rails_4.2.gemfile
+  - gemfiles/rails_5.0.gemfile
+  - gemfiles/rails_5.1.gemfile
   - gemfiles/rails_edge.gemfile
 
 matrix:
   allow_failures:
     - gemfile: gemfiles/rails_edge.gemfile
-    - rvm: rbx-2
   exclude:
     - rvm: 2.4.1
       gemfile: gemfiles/rails_3.2.gemfile
