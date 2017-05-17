@@ -3,7 +3,7 @@
 **The Unobtrusive in Place editing solution**
 
 
-##Description
+## Description
 
 **Best in Place** is a jQuery based AJAX Inplace-Editor that takes profit of RESTful server-side controllers to allow users to edit stuff with
 no need of forms. If the server has standard defined REST methods, particularly those to UPDATE your objects (HTTP PUT), then by adding the
@@ -13,9 +13,9 @@ The editor works by PUTting the updated value to the server and GETting the upda
 
 ---
 
-##Installation
+## Installation
 
-###Rails
+### Rails
 
 Installing *best_in_place* is very easy and straight-forward.
 Just begin including the gem in your Gemfile:
@@ -44,7 +44,7 @@ Then, just add a binding to prepare all best in place fields when the document i
 
 You are done!
 
-##Features
+## Features
 
 - Compatible with text **inputs**
 - Compatible with **textarea**
@@ -62,9 +62,9 @@ You are done!
 - Custom display methods using a method from your model or an existing rails
   view helper
 
-##Usage of Rails 3 Gem
+## Usage of Rails 3 Gem
 
-###best_in_place
+### best_in_place
 **best_in_place object, field, OPTIONS**
 
 Params:
@@ -106,7 +106,7 @@ So, for instance, if you want to add an HTML tab index to the best_in_place span
 
     <%= best_in_place @user, :name, tabindex: "1" %>
 
-###best_in_place_if
+### best_in_place_if
 **best_in_place_if condition, object, field, OPTIONS**
 see also **best_in_place_unless**
 
@@ -166,7 +166,7 @@ The value will always be converted to a string for display.
 If you use array as a collection, the first value is always the negative boolean value and the second the positive. Structure: `["false value", "true value"]`.
 If not defined, it will default to *Yes* and *No* options.
 Default true and false values are stored in locales
- 
+
     t(:'best_in_place.yes', default: 'Yes')
     t(:'best_in_place.no', default: 'No')
 
@@ -260,7 +260,7 @@ And in your javascript:
 
     $('.best_in_place').bind("ajax:success", function(){ alert('Name updated for '+$(this).data('userName')); });
 
-##Non Active Record environments
+## Non Active Record environments
 We are not planning to support other ORMs apart from Active Record, at least for now. So, you can perfectly consider the following workaround as *the right way* until a specific implementation is done for your ORM.
 
 Best In Place automatically assumes that Active Record is the ORM you are using. However, this might not be your case, as you might use another ORM (or not ORM at all for that case!). Good news for you: even in such situation Best In Place can be used!
@@ -340,7 +340,7 @@ You can configure some global options for best_in_place. Currently these options
       config.container = :div
       config.skip_blur = true
     end
-    
+
 
 ## Notification
 
@@ -362,7 +362,7 @@ If the script is used with the Rails Gem no html tags will be allowed unless the
 
 ---
 
-##TODO
+## TODO
 
 - Client Side Validation definitions
 - Accepting more than one handler to activate best_in_place fields
@@ -386,7 +386,7 @@ You many need to install appraisal: `gem install appraisal`
 
 ---
 
-##Test Helpers
+## Test Helpers
 Best In Place has also some helpers that may be very useful for integration testing. Since it might very common to test some views using Best In Place, some helpers are provided to ease it.
 
 As of now, a total of four helpers are available. There is one for each of the following BIP types: a plain text input, a textarea, a boolean input and a selector. Its function is to simulate the user's action of filling such fields.
@@ -407,7 +407,7 @@ The parameters are defined here (some are method-specific):
 
 ---
 
-##Authors, License and Stuff
+## Authors, License and Stuff
 
 Code by [Bernat Farrero](http://bernatfarrero.com) from [Itnig Web Services](http://itnig.net) (it was based on the [original project](http://github.com/janv/rest_in_place/) of Jan Varwig) and released under [MIT license](http://www.opensource.org/licenses/mit-license.php).
 
