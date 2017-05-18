@@ -1,5 +1,14 @@
 #Changelog
 - unreleased
+
+- v.3.1.1
+  - Chore/improve readme
+  - Upgrade PhantomJS version for travis and remove deprecation warning
+  - Add Tests in Rails 5+
+  - Bump ruby version support
+  - Fix markdown rendering of headings
+  - Fix README markdown preview
+  - Add a best_in_place:before-update event
   - add option[:skip_blur] to play nice with wysiwhtml5
 
 - v.3.0.3 :
