@@ -4,7 +4,7 @@ module BestInPlace
 
     def bip_area(model, attr, new_value)
       id = BestInPlace::Utils.build_best_in_place_id model, attr
-      find("##{id}").click
+      page.find("##{id}").click
       execute_script <<-JS
         $("##{id} form textarea").val('#{escape_javascript new_value.to_s}');
         $("##{id} form textarea").blur();

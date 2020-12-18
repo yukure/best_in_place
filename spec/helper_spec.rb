@@ -3,7 +3,6 @@
 describe BestInPlace::Helper, type: :helper do
   describe "#best_in_place" do
     before do
-
       @user = User.new :name => "Lucia",
         :last_name => "Napoli",
         :email => "lucianapoli@gmail.com",

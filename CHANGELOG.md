@@ -1,5 +1,6 @@
 #Changelog
-- unreleased
+- v.6.1.0
+- Version set to the version of rails it matches to (given that is the usecase)
 
 - v.3.1.1
   - Chore/improve readme
